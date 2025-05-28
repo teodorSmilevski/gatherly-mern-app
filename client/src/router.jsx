@@ -12,13 +12,15 @@ const Login = lazy(() => import("./pages/login.jsx"));
 const Register = lazy(() => import("./pages/register.jsx"));
 const UserDashboard = lazy(() => import("./pages/dashboard.jsx"));
 const NotFound = lazy(() => import("./pages/not-found.jsx"));
+const DefaultLayout = lazy(() =>
+  import("./components/layout/DefaultLayout.jsx")
+);
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={
@@ -36,39 +38,41 @@ const AppRouter = () => {
             }
           />
 
-          <Route
-            path="/events/:eid"
-            element={
-              <PrivateRoute>
-                <EventDetails />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <UserDashboard />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/events/new"
-            element={
-              <PrivateRoute roles={["creator"]}>
-                <CreateEvent />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/events/:eid/edit"
-            element={
-              <PrivateRoute roles={["creator", "admin"]}>
-                <EditEvent />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/events/:eid"
+              element={
+                <PrivateRoute>
+                  <EventDetails />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <UserDashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/events/new"
+              element={
+                <PrivateRoute roles={["creator"]}>
+                  <CreateEvent />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/events/:eid/edit"
+              element={
+                <PrivateRoute roles={["creator", "admin"]}>
+                  <EditEvent />
+                </PrivateRoute>
+              }
+            />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>
