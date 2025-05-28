@@ -10,28 +10,30 @@ const DefaultLayout = () => {
   return (
     <>
       <header className="navbar">
-        <div className="navbar-logo">
-          <img src="/images/gatherly-logo.png" alt="Gatherly Logo" />
-        </div>
-        <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-          {isAuthenticated ? (
-            <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
-              Dashboard
+        <div className="navbar-content">
+          <div className="navbar-logo">
+            <img src="/images/gatherly-logo.png" alt="Gatherly Logo" />
+          </div>
+          <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
-          ) : (
-            <Link to="/login" onClick={() => setMenuOpen(false)}>
-              Login
-            </Link>
-          )}
-        </nav>
-        <div
-          className="navbar-toggle"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          ☰
+            {isAuthenticated ? (
+              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                Dashboard
+              </Link>
+            ) : (
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Login
+              </Link>
+            )}
+          </nav>
+          <div
+            className="navbar-toggle"
+            onClick={() => setMenuOpen((prev) => !prev)}
+          >
+            ☰
+          </div>
         </div>
       </header>
 
