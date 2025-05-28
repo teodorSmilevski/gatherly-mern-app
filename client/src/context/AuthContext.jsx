@@ -22,13 +22,6 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  login({
-    _id: "u123",
-    username: "john_doe",
-    email: "john_doe@email.com",
-    role: "user",
-  });
-
   const isAuth = !!user;
 
   return (
