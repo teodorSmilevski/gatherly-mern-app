@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 import LoadingScreen from "./components/ui/LoadingScreen/LoadingScreen.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 
-const Home = lazy(() => import("./pages/home.jsx"));
+const Home = lazy(() => import("./pages/Home.jsx"));
 const EventDetails = lazy(() => import("./pages/event-details.jsx"));
 const CreateEvent = lazy(() => import("./pages/create-event.jsx"));
 const EditEvent = lazy(() => import("./pages/edit-event.jsx"));

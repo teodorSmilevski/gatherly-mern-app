@@ -1,0 +1,82 @@
+.events-listing {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+.listing-header {
+  background-color: var(--color-primary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+.events-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  width: 100%;
+  padding: 1rem 0;
+  box-sizing: border-box;
+  min-height: 150px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination button:disabled {
+  background-color: var(--color-secondary);
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.spinner-wrap {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.no-events {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+@media (max-width: 1023px) and (min-width: 600px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}

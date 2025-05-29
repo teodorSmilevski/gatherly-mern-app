@@ -1,0 +1,156 @@
+[
+  {
+    "_id": "e001",
+    "title": "Jazz Under the Stars",
+    "image": "",
+    "date": "2025-07-23T15:00:00Z",
+    "category": "comunnity"
+  },
+  {
+    "_id": "e002",
+    "title": "Sunset Yoga",
+    "image": "",
+    "date": "2025-07-10T10:00:00Z",
+    "category": "comunnity"
+  },
+  {
+    "_id": "e003",
+    "title": "AI & Ethics Panel",
+    "image": "",
+    "date": "2025-06-12T21:00:00Z",
+    "category": "business"
+  },
+  {
+    "_id": "e004",
+    "title": "Local Art Showcase",
+    "image": "",
+    "date": "2025-06-17T19:00:00Z",
+    "category": "workshops"
+  },
+  {
+    "_id": "e005",
+    "title": "Beginner's Coding Bootcamp",
+    "image": "",
+    "date": "2025-06-12T19:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e006",
+    "title": "Marathon Training Session",
+    "image": "",
+    "date": "2025-07-05T14:00:00Z",
+    "category": "comunnity"
+  },
+  {
+    "_id": "e007",
+    "title": "Creative Writing Workshop",
+    "image": "",
+    "date": "2025-07-30T13:00:00Z",
+    "category": "sports"
+  },
+  {
+    "_id": "e008",
+    "title": "Business Growth Hacks",
+    "image": "",
+    "date": "2025-06-11T13:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e009",
+    "title": "Community Gardening Day",
+    "image": "",
+    "date": "2025-06-23T18:00:00Z",
+    "category": "workshops"
+  },
+  {
+    "_id": "e010",
+    "title": "Open Mic Night",
+    "image": "",
+    "date": "2025-06-11T18:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e011",
+    "title": "Cultural Food Exchange",
+    "image": "",
+    "date": "2025-06-05T19:00:00Z",
+    "category": "sports"
+  },
+  {
+    "_id": "e012",
+    "title": "Weekend Hackathon",
+    "image": "",
+    "date": "2025-06-11T20:00:00Z",
+    "category": "sports"
+  },
+  {
+    "_id": "e013",
+    "title": "Public Speaking 101",
+    "image": "",
+    "date": "2025-07-10T11:00:00Z",
+    "category": "culture"
+  },
+  {
+    "_id": "e014",
+    "title": "Photography Walk",
+    "image": "",
+    "date": "2025-07-08T17:00:00Z",
+    "category": "workshops"
+  },
+  {
+    "_id": "e015",
+    "title": "Blockchain for Beginners",
+    "image": "",
+    "date": "2025-06-08T19:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e016",
+    "title": "Charity Fun Run",
+    "image": "",
+    "date": "2025-07-31T21:00:00Z",
+    "category": "business"
+  },
+  {
+    "_id": "e017",
+    "title": "Meet Your Neighbors",
+    "image": "",
+    "date": "2025-07-21T15:00:00Z",
+    "category": "sports"
+  },
+  {
+    "_id": "e018",
+    "title": "UX/UI Design Meetup",
+    "image": "",
+    "date": "2025-07-31T11:00:00Z",
+    "category": "business"
+  },
+  {
+    "_id": "e019",
+    "title": "Salsa Dance Class",
+    "image": "",
+    "date": "2025-06-07T15:00:00Z",
+    "category": "workshops"
+  },
+  {
+    "_id": "e020",
+    "title": "Climate Action Rally",
+    "image": "",
+    "date": "2025-06-13T11:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e021",
+    "title": "Digital Nomad Mixer",
+    "image": "",
+    "date": "2025-07-14T14:00:00Z",
+    "category": "concerts"
+  },
+  {
+    "_id": "e022",
+    "title": "Startup Pitch Night",
+    "image": "",
+    "date": "2025-07-04T14:00:00Z",
+    "category": "culture"
+  }
+]

@@ -4,8 +4,6 @@ import { useAuth } from "../hooks/useAuth";
 const PrivateRoute = ({ children, roles, onlyNotAuth }) => {
   const { isAuth, user } = useAuth();
 
-  console.log(isAuth, user);
-
   if (onlyNotAuth) {
     if (isAuth) {
       return <Navigate to="/" replace />;
