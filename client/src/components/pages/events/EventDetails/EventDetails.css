@@ -5,21 +5,6 @@
   font-family: sans-serif;
 }
 
-.go-back-btn {
-  display: flex;
-  align-items: center;
-  border: 0;
-  background: transparent;
-  color: #999;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-}
-
-.go-back-btn:hover {
-  color: #666;
-}
-
 .event-details-header {
   display: flex;
   justify-content: space-between;
