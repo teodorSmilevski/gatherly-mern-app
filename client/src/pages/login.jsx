@@ -1,4 +1,4 @@
-import "../styles/Login.css";
+import "../styles/Auth.css";
 import illustration from "../assets/images/auth/login-image.svg";
 import logo from "/images/gatherly-logo.png";
 import GoBackButton from "../components/ui/GoBackButton/GoBackButton";
@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-header">
-        <GoBackButton />
+        <GoBackButton route="/" />
       </div>
 
       <div className="login-left">
@@ -43,7 +43,9 @@ const Login = () => {
               required
             />
           </label>
-          <button type="submit">Login</button>
+          <button type="submit" className="auth-btn">
+            Login
+          </button>
         </form>
         <div className="login-register-link">
           <p>
