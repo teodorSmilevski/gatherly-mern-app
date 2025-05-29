@@ -4,7 +4,7 @@ import "./DefaultLayout.css";
 import { useAuth } from "../../hooks/useAuth";
 
 const DefaultLayout = () => {
-  const { isAuth: isAuthenticated } = useAuth();
+  const { isAuth: isAuthenticated, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -19,9 +19,14 @@ const DefaultLayout = () => {
               Home
             </Link>
             {isAuthenticated ? (
-              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
-                Dashboard
-              </Link>
+              <>
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                  Dashboard
+                </Link>
+                <Link to="/" onClick={logout}>
+                  Logout
+                </Link>
+              </>
             ) : (
               <Link to="/login" onClick={() => setMenuOpen(false)}>
                 Login

@@ -1,0 +1,26 @@
+{
+  "_id": "e001",
+  "title": "Jazz Under the Stars",
+  "description": "Let's talk React, share ideas, and network.Let's talk React, share ideas, and network.Let's talk React, share ideas, and network.Let's talk React, share ideas, and network.Let's talk React, share ideas, and network.",
+  "date": "2025-07-23T15:00:00Z",
+  "location": "Public Room, Skopje",
+  "image": "",
+  "creatorId": "u123",
+  "category": "comunnity",
+  "comments": [
+    {
+      "userId": "u002",
+      "user": "John Doe",
+      "text": "See you there!",
+      "createdAt": "2025-06-01T09:00Z"
+    },
+    {
+      "userId": "u004",
+      "user": "John Doe",
+      "text": "See you there!",
+      "createdAt": "2025-06-01T09:00Z"
+    }
+  ],
+  "rsvps": ["u345", "u678"],
+  "createdAt": "2025-05-26T12:00Z"
+}

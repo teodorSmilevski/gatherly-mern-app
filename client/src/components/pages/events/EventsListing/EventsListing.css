@@ -79,4 +79,7 @@
   .events-grid {
     grid-template-columns: 1fr;
   }
+  .header-title {
+    font-size: 1.12rem;
+  }
 }
