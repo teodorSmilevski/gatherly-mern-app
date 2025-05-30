@@ -9,6 +9,7 @@ const EventDetailsCard = ({
   description,
   rsvps,
   location,
+  creatorName,
   reserveSpot,
 }) => {
   return (
@@ -28,6 +29,9 @@ const EventDetailsCard = ({
             </span>
             <span>
               <strong>Location:</strong> {location}
+            </span>
+            <span>
+              <strong>Host:</strong> {creatorName}
             </span>
           </div>
           <div className="event-details-category">

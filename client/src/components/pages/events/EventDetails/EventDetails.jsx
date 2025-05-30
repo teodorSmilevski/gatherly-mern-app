@@ -3,6 +3,7 @@ import "./EventDetails.css";
 import EventComments from "./components/EventComments";
 import { formatDate } from "../../../../utils/dateFormat";
 import EventDetailsCard from "./components/EventDetailsCard";
+import GoBackButton from "../../../ui/GoBackButton/GoBackButton";
 
 const Event = ({
   event: {
@@ -15,6 +16,7 @@ const Event = ({
     rsvps = [],
     createdAt = "",
     comments = [],
+    creator = { username: "unknown", _id: "" },
   } = {},
 }) => {
   const reserveSpot = () => {
@@ -48,6 +50,7 @@ const Event = ({
         location={location}
         date={date}
         rsvps={rsvps}
+        creatorName={creator.username}
         reserveSpot={reserveSpot}
       />
 

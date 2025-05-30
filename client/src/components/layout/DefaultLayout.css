@@ -58,6 +58,10 @@
   height: 40px;
 }
 
+.create-event-link {
+  color: var(--color-primary);
+}
+
 @media (max-width: 768px) {
   .navbar-links {
     position: absolute;

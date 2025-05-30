@@ -1,4 +1,3 @@
-// components/HeroSection.jsx
 import image from "../../../../assets/images/home/hero-image.svg";
 import "./HeroSection.css";
 import PrimaryButton from "../../../ui/PrimaryButton/PrimaryButton";

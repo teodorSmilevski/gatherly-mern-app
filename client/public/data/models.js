@@ -14,7 +14,10 @@ const EVENT_MODEL = {
   date: "2025-06-10T18:00Z",
   location: "Public Room, Skopje",
   image: "https://cloudstorage.com/event1.jpg",
-  creatorId: "u123",
+  creator: {
+    _id: "u123",
+    username: "john_doe",
+  },
   category: "Tech",
   comments: [
     {

@@ -5,7 +5,10 @@
   "date": "2025-07-23T15:00:00Z",
   "location": "Public Room, Skopje",
   "image": "",
-  "creatorId": "u123",
+  "creator": {
+    "_id": "u123",
+    "username": "john_doe"
+  },
   "category": "comunnity",
   "comments": [
     {

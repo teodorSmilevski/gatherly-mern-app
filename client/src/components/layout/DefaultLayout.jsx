@@ -4,7 +4,7 @@ import "./DefaultLayout.css";
 import { useAuth } from "../../hooks/useAuth";
 
 const DefaultLayout = () => {
-  const { isAuth: isAuthenticated, logout } = useAuth();
+  const { isCreator, isAuth: isAuthenticated, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -23,6 +23,11 @@ const DefaultLayout = () => {
                 <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
                   Dashboard
                 </Link>
+                {isCreator && (
+                  <Link to="/events/new" onClick={() => setMenuOpen(false)}>
+                    Create Event
+                  </Link>
+                )}
                 <Link to="/" onClick={logout}>
                   Logout
                 </Link>
