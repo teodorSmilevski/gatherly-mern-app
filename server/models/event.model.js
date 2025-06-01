@@ -1,12 +1,11 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 export const eventSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
       required: true,
-      unique: true,
       default: () => uuidv4(),
     },
     title: {
@@ -35,7 +34,7 @@ export const eventSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
-    category: {
+    categoryId: {
       type: String,
       required: true,
       ref: "Category",
@@ -43,6 +42,18 @@ export const eventSchema = new mongoose.Schema(
     maxCapacity: {
       type: Number,
     },
+    comments: [
+      {
+        type: String,
+        ref: "Comment",
+      },
+    ],
+    rsvps: [
+      {
+        type: String,
+        ref: "RSVP",
+      },
+    ],
   },
   { timestamps: true }
 );

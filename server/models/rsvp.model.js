@@ -1,11 +1,10 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 export const rsvpSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
-    unique: true,
     default: () => uuidv4(),
   },
   eventId: {
@@ -22,8 +21,8 @@ export const rsvpSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["going", "not going", "interested"],
-    default: "interested",
+    enum: ["Going", "Interested"],
+    default: "Going",
   },
   joinedAt: {
     type: Date,

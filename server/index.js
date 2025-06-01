@@ -4,6 +4,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import userRoutes from "./routes/user.routes.js";
+import eventRoutes from "./routes/event.routes.js";
+import categoryRoutes from "./routes/category.routes.js";
+import rsvpRoutes from "./routes/rsvp.routes.js";
+import commentRoutes from "./routes/comment.routes.js";
 
 dotenv.config();
 
@@ -14,6 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/events", eventRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/rsvps", rsvpRoutes);
+app.use("/comments", commentRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running.");

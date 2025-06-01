@@ -1,13 +1,16 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { UserModel } from "../models/user.model.js";
+import { categorySchema } from "../models/category.model.js";
 
 export const getUserByUsername = async (req, res) => {
   try {
     const username = req.params.username;
 
     const user = await UserModel.findOne({ username })
-      .select("-password -__v")
+      .select("-password -__v -createdAt -updatedAt")
+      .populate("createdEvents", "title date location image")
+      .populate("attendedEvents", "title date location image")
       .lean();
     if (!user) {
       return res.status(404).json({ message: "User doesn't exist!" });
@@ -21,7 +24,11 @@ export const getUserByUsername = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await UserModel.find().select("-password -__v").lean();
+    const users = await UserModel.find()
+      .select("-password -__v -createdAt -updatedAt")
+      .populate("createdEvents", "title date location image")
+      .populate("attendedEvents", "title date location image")
+      .lean();
     res.status(200).json({ users });
   } catch (error) {
     res.status(500).json({ message: "Error fetching users!", error });

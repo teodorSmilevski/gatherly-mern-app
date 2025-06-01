@@ -1,12 +1,11 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
 
 export const commentSchema = new mongoose.Schema(
   {
     _id: {
       type: String,
       required: true,
-      unique: true,
       default: () => uuidv4(),
     },
     eventId: {
