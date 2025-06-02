@@ -1,44 +1,57 @@
 import { useState } from "react";
+import { useGet } from "../hooks/api/useGet";
 import "../styles/CreateEvent.css";
 import { validateEvent } from "../utils/validations";
+import { formatForInput, localDateFormat } from "../utils/localDateFormat";
+import { usePost } from "../hooks/api/usePost";
+import { useNavigate } from "react-router-dom";
 
 const defaultEvent = {
   title: "",
   description: "",
   date: "",
   location: "",
-  image: "",
-  category: "",
+  maxCapacity: 100,
+  categoryId: "",
 };
 
 const CreateEvent = () => {
+  const navigate = useNavigate();
+
+  const { data } = useGet("/api/categories");
+  const { postData } = usePost();
+
   const [formData, setFormData] = useState(defaultEvent);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "date") {
+      const dataValue = localDateFormat(e.target.value);
+      setFormData({ ...formData, [e.target.name]: dataValue });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateEvent(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log("Event Created:", formData);
-    setFormData(defaultEvent);
-    setErrors({});
+    const res = await postData("/api/events/new", formData);
+
+    if (res.event) {
+      setTimeout(() => {
+        setFormData(defaultEvent);
+        setErrors({});
+        navigate(`/events/${res.event._id}`);
+      }, 1500);
+    }
   };
 
-  const categories = [
-    "culture",
-    "concert",
-    "workshop",
-    "sports",
-    "business",
-    "community",
-  ];
+  const categories = data?.categories || [];
 
   return (
     <div className="create-event-page">
@@ -62,6 +75,7 @@ const CreateEvent = () => {
             <textarea
               name="description"
               rows="4"
+              maxLength="500"
               value={formData.description}
               onChange={handleChange}
               required
@@ -71,17 +85,34 @@ const CreateEvent = () => {
             )}
           </label>
 
-          <label>
-            Date & Time
-            <input
-              type="datetime-local"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-            {errors.date && <span className="error">{errors.date}</span>}
-          </label>
+          <div className="form-horizontal-inputs">
+            <label>
+              Date & Time
+              <input
+                type="datetime-local"
+                name="date"
+                value={formatForInput(formData.date)}
+                onChange={handleChange}
+                required
+              />
+              {errors.date && <span className="error">{errors.date}</span>}
+            </label>
+            <label>
+              Max Capacity
+              <input
+                type="number"
+                name="maxCapacity"
+                min={1}
+                max={300}
+                value={formData.maxCapacity}
+                onChange={handleChange}
+                required
+              />
+              {errors.maxCapacity && (
+                <span className="error">{errors.maxCapacity}</span>
+              )}
+            </label>
+          </div>
 
           <label>
             Location
@@ -100,22 +131,22 @@ const CreateEvent = () => {
           <label>
             Category
             <select
-              name="category"
-              value={formData.category}
+              name="categoryId"
+              value={formData.categoryId}
               onChange={handleChange}
               required
             >
               <option value="" disabled>
                 Select category
               </option>
-              {categories.slice(1).map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              {categories.map((cat) => (
+                <option key={cat._id} value={cat._id}>
+                  {cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}
                 </option>
               ))}
             </select>
-            {errors.category && (
-              <span className="error">{errors.category}</span>
+            {errors.categoryId && (
+              <span className="error">{errors.categoryId}</span>
             )}
           </label>
 

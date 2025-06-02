@@ -12,6 +12,6 @@ export const validateEvent = (formData) => {
   if (!formData.description) newErrors.description = "Description is required.";
   if (!formData.date) newErrors.date = "Date and time are required.";
   if (!formData.location) newErrors.location = "Location is required.";
-  if (!formData.category) newErrors.category = "Category is required.";
+  if (!formData.categoryId) newErrors.categoryId = "Category is required.";
   return newErrors;
 };
