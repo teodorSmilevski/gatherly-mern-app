@@ -9,10 +9,12 @@ import {
   isValidPassword,
   isValidUsername,
 } from "../utils/validations";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
   const [selectedRole, setSelectedRole] = useState("user");
   const [errors, setErrors] = useState({});
+  const { register } = useAuth();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -34,7 +36,8 @@ const Register = () => {
     }
 
     setErrors({});
-    console.log("Register form submitted", {
+
+    register({
       username,
       email,
       password,

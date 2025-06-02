@@ -3,13 +3,16 @@ import illustration from "../assets/images/auth/login-image.svg";
 import logo from "/images/gatherly-logo.png";
 import GoBackButton from "../components/ui/GoBackButton/GoBackButton";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const { login } = useAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-    console.log("Login form submitted", { email, password });
+    login({ email, password });
   };
 
   return (

@@ -14,14 +14,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+  })
+);
 app.use(express.json());
 
-app.use("/users", userRoutes);
-app.use("/events", eventRoutes);
-app.use("/categories", categoryRoutes);
-app.use("/rsvps", rsvpRoutes);
-app.use("/comments", commentRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/rsvps", rsvpRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running.");

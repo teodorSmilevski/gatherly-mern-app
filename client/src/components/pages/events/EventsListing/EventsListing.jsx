@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useFetch } from "../../../../hooks/useEvents";
+import { useGet } from "../../../../hooks/api/useGet";
 import EventCard from "../EventCard/EventCard";
 import "./EventsListing.css";
 
 const ITEMS_PER_PAGE = 12;
 
 const EventsListing = () => {
-  const { data: eventsData, loading } = useFetch("/data/events.json");
+  const { data: eventsData, loading } = useGet("/api/events");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const events = Array.isArray(eventsData) ? eventsData : [];
+  const events = Array.isArray(eventsData?.formattedEvents)
+    ? eventsData.formattedEvents
+    : [];
   const totalPages = Math.ceil(events.length / ITEMS_PER_PAGE);
 
   const start = (currentPage - 1) * ITEMS_PER_PAGE;

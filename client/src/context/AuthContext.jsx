@@ -1,24 +1,81 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
+import { jwtDecode } from "jwt-decode";
+import { usePost } from "../hooks/api/usePost";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loginError, setLoginError] = useState(null);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const { postData } = usePost();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setUser(decoded);
+      } catch (err) {
+        localStorage.removeItem("token");
+        console.error(err);
+        setUser(null);
+      }
     }
   }, []);
 
-  const login = (userData) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
-  };
+  const login = useCallback(
+    async (credentials) => {
+      setLoginError(null);
+      setLoginLoading(true);
+      try {
+        const res = await postData("/api/users/login", credentials);
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          const decoded = jwtDecode(res.token);
+          setUser(decoded);
+        } else {
+          setLoginError(res.message || "Login failed");
+        }
+      } catch (err) {
+        setLoginError(
+          err?.response?.data?.message || "Login failed. Please try again."
+        );
+      } finally {
+        setLoginLoading(false);
+      }
+    },
+    [postData]
+  );
+
+  const register = useCallback(
+    async (userData) => {
+      setLoginError(null);
+      setLoginLoading(true);
+      try {
+        const res = await postData("/api/users/register", userData);
+
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          const decoded = jwtDecode(res.token);
+          setUser(decoded);
+        } else {
+          setLoginError(res.message || "Registration failed");
+        }
+      } catch (err) {
+        setLoginError(
+          err?.response?.data?.message ||
+            "Registration failed. Please try again."
+        );
+      } finally {
+        setLoginLoading(false);
+      }
+    },
+    [postData]
+  );
 
   const logout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(null);
   };
 
@@ -30,11 +87,14 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
-        isAuth,
         login,
+        register,
         logout,
+        isAuth,
         isCreator,
         isAdmin,
+        loginError,
+        loginLoading,
       }}
     >
       {children}

@@ -15,6 +15,7 @@ const Event = ({
     category = "",
     rsvps = [],
     createdAt = "",
+    maxCapacity,
     comments = [],
     creator = { username: "unknown", _id: "" },
   } = {},
@@ -50,6 +51,7 @@ const Event = ({
         location={location}
         date={date}
         rsvps={rsvps}
+        maxCapacity={maxCapacity}
         creatorName={creator.username}
         reserveSpot={reserveSpot}
       />

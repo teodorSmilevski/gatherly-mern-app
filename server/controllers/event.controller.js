@@ -30,7 +30,7 @@ export const createEvent = async (req, res) => {
       location,
       categoryId,
       creatorId: userId,
-      image: `./images/category/${category?.name}.png`,
+      image: `/images/category/${category?.name}.jpg`,
       maxCapacity,
     });
 
@@ -70,6 +70,7 @@ export const getEventById = async (req, res) => {
     const { eventId } = req.params;
     const event = await EventModel.findById(eventId)
       .populate("creatorId", "username")
+      .populate("categoryId", "name")
       .populate({
         path: "comments",
         select: "text createdAt",
@@ -87,6 +88,8 @@ export const getEventById = async (req, res) => {
         creator: event.creatorId,
         date: formatDate(event.date),
         createdAt: formatDate(event.createdAt),
+        category: event.categoryId ? event.categoryId.name : "Uncategorized",
+        categoryId: undefined,
         updatedAt: undefined,
         creatorId: undefined,
         __v: undefined,

@@ -1,5 +1,6 @@
 import placeholderImage from "../../../../../assets/images/events/placeholder-image.png";
 import { formatDate, formatTime } from "../../../../../utils/dateFormat";
+import { IoPerson } from "react-icons/io5";
 
 const EventDetailsCard = ({
   image,
@@ -11,6 +12,7 @@ const EventDetailsCard = ({
   location,
   creatorName,
   reserveSpot,
+  maxCapacity,
 }) => {
   return (
     <div className="event-details-card">
@@ -43,7 +45,10 @@ const EventDetailsCard = ({
       <div className="event-description-section">{description}</div>
 
       <div className="event-bottom-row">
-        <div className="event-bottom-left">{rsvps.length} people are going</div>
+        <div className="event-bottom-left">
+          <IoPerson color="var(--color-text-secondary)" />
+          {rsvps.length} / {maxCapacity}
+        </div>
         <button className="rsvp-button" onClick={reserveSpot}>
           Reserve Spot
         </button>

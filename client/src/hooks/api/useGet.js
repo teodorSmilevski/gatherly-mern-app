@@ -10,6 +10,7 @@ export const useGet = (url) => {
     const fetchData = async () => {
       try {
         const res = await axios.get(url);
+
         setData(res.data);
       } catch (err) {
         setError(err);
@@ -25,6 +26,7 @@ export const useGet = (url) => {
     setLoading(true);
     try {
       const res = await axios.get(url);
+
       setData(res.data);
       setError(null);
     } catch (err) {

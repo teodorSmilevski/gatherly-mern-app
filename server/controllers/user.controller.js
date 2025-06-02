@@ -58,8 +58,14 @@ export const registerUser = async (req, res) => {
       role,
     });
 
+    const token = jwt.sign(
+      { userId: newUser._id, role: newUser.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
     const { password: _, ...userWithoutPassword } = newUser.toObject();
-    res.status(201).json({ user: userWithoutPassword });
+    res.status(201).json({ token, user: userWithoutPassword });
   } catch (error) {
     res.status(500).json({ message: "Error creating user", error });
   }
