@@ -8,7 +8,10 @@ export const useDelete = () => {
   const deleteData = useCallback(async (url) => {
     setLoading(true);
     try {
-      const res = await axios.delete(url);
+      const token = localStorage.getItem("token");
+      const res = await axios.delete(url, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       return res.data;
     } catch (err) {
       setError(err);

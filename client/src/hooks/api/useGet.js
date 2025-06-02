@@ -23,7 +23,6 @@ export const useGet = (url) => {
   }, [url]);
 
   const refetch = async () => {
-    setLoading(true);
     try {
       const res = await axios.get(url);
 
@@ -31,8 +30,6 @@ export const useGet = (url) => {
       setError(null);
     } catch (err) {
       setError(err);
-    } finally {
-      setLoading(false);
     }
   };
 

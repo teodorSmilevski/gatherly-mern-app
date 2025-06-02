@@ -6,7 +6,7 @@ import { useGet } from "../hooks/api/useGet";
 
 const EventDetails = () => {
   const { eid } = useParams();
-  const { data, loading } = useGet(`/api/events/${eid}`);
+  const { data, loading, refetch } = useGet(`/api/events/${eid}`);
 
   if (loading) {
     return <LoadingScreen />;
@@ -16,7 +16,7 @@ const EventDetails = () => {
     return <h2>Event not found.</h2>;
   }
 
-  return <Event event={data.event} />;
+  return <Event event={data.event} refetch={refetch} />;
 };
 
 export default EventDetails;

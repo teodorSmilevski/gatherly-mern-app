@@ -11,7 +11,7 @@ const EventComments = ({ comments, postComment }) => {
           {comments.map((comment, idx) => (
             <li key={idx}>
               <p>
-                <strong>{comment.user}</strong>
+                <strong>{comment.userId.username}</strong>
               </p>
               <p>{comment.text}</p>
               <span className="comment-date">

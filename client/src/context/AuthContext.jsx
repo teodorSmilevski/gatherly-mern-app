@@ -9,18 +9,50 @@ export const AuthProvider = ({ children }) => {
   const [loginError, setLoginError] = useState(null);
   const [loginLoading, setLoginLoading] = useState(false);
   const { postData } = usePost();
+  const [initializing, setInitializing] = useState(true);
+
+  const fetchUserByUsername = async (username) => {
+    try {
+      const res = await fetch(`/api/users/${username}`);
+      const data = await res.json();
+      if (data.user) {
+        setUser(data.user);
+      } else {
+        setUser(null);
+      }
+    } catch (err) {
+      console.error("Failed to fetch user by username", err);
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        setUser(decoded);
+        if (decoded && decoded.userId) {
+          if (decoded.username) {
+            fetchUserByUsername(decoded.username).finally(() =>
+              setInitializing(false)
+            );
+          } else {
+            setUser(null);
+            setInitializing(false);
+          }
+        } else {
+          setUser(null);
+          setInitializing(false);
+        }
       } catch (err) {
         localStorage.removeItem("token");
-        console.error(err);
+        console.error("Invalid token", err);
         setUser(null);
+        setInitializing(false);
       }
+    } else {
+      setUser(null);
+      setInitializing(false);
     }
   }, []);
 
@@ -32,8 +64,16 @@ export const AuthProvider = ({ children }) => {
         const res = await postData("/api/users/login", credentials);
         if (res.token) {
           localStorage.setItem("token", res.token);
-          const decoded = jwtDecode(res.token);
-          setUser(decoded);
+          if (res.user) {
+            setUser(res.user);
+          } else {
+            const decoded = jwtDecode(res.token);
+            if (decoded && decoded.username) {
+              await fetchUserByUsername(decoded.username);
+            } else {
+              setUser(null);
+            }
+          }
         } else {
           setLoginError(res.message || "Login failed");
         }
@@ -54,11 +94,9 @@ export const AuthProvider = ({ children }) => {
       setLoginLoading(true);
       try {
         const res = await postData("/api/users/register", userData);
-
-        if (res.token) {
+        if (res.token && res.user) {
           localStorage.setItem("token", res.token);
-          const decoded = jwtDecode(res.token);
-          setUser(decoded);
+          setUser(res.user);
         } else {
           setLoginError(res.message || "Registration failed");
         }
@@ -95,6 +133,7 @@ export const AuthProvider = ({ children }) => {
         isAdmin,
         loginError,
         loginLoading,
+        initializing,
       }}
     >
       {children}

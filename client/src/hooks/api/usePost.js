@@ -9,7 +9,10 @@ export const usePost = () => {
   const postData = useCallback(async (url, payload) => {
     setLoading(true);
     try {
-      const res = await axios.post(url, payload);
+      const token = localStorage.getItem("token");
+      const res = await axios.post(url, payload, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       return res.data;
     } catch (err) {
       setError(err);
