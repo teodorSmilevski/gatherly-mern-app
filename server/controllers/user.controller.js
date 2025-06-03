@@ -9,11 +9,43 @@ export const getUserByUsername = async (req, res) => {
 
     const user = await UserModel.findOne({ username })
       .select("-password -__v -createdAt -updatedAt")
-      .populate("createdEvents", "title date location image")
-      .populate("attendedEvents", "title date location image")
+      .populate({
+        path: "createdEvents",
+        select: "title date location image rsvps categoryId",
+        populate: [
+          { path: "rsvps", select: "_id" },
+          { path: "categoryId", select: "name" },
+        ],
+      })
+      .populate({
+        path: "attendedEvents",
+        select: "title date location image categoryId",
+        populate: {
+          path: "categoryId",
+          select: "name",
+        },
+      })
       .lean();
+
     if (!user) {
       return res.status(404).json({ message: "User doesn't exist!" });
+    }
+
+    if (user.createdEvents && Array.isArray(user.createdEvents)) {
+      user.createdEvents = user.createdEvents.map((event) => ({
+        ...event,
+        reservationCount: event.rsvps ? event.rsvps.length : 0,
+        category: event.categoryId?.name || "Uncategorized",
+        categoryId: undefined,
+      }));
+    }
+
+    if (user.attendedEvents && Array.isArray(user.attendedEvents)) {
+      user.attendedEvents = user.attendedEvents.map((event) => ({
+        ...event,
+        category: event.categoryId?.name || "Uncategorized",
+        categoryId: undefined,
+      }));
     }
 
     res.status(200).json({ user });
