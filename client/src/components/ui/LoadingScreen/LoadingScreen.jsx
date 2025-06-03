@@ -1,4 +1,5 @@
 import "./LoadingScreen.css";
+import Spinner from "./Spinner";
 
 const LoadingScreen = () => {
   return (
@@ -8,7 +9,7 @@ const LoadingScreen = () => {
         alt="Gatherly Logo"
         className="loading-logo"
       />
-      <div className="spinner"></div>
+      <Spinner />
     </div>
   );
 };

@@ -49,7 +49,7 @@ const AppRouter = () => {
               }
             />
             <Route
-              path="/dashboard"
+              path="/dashboard/:username"
               element={
                 <PrivateRoute>
                   <UserDashboard />
