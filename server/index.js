@@ -9,6 +9,8 @@ import categoryRoutes from "./routes/category.routes.js";
 import rsvpRoutes from "./routes/rsvp.routes.js";
 import commentRoutes from "./routes/comment.routes.js";
 
+import { setupSwagger } from "./docs/swagger.js";
+
 dotenv.config();
 
 const app = express();
@@ -26,6 +28,8 @@ app.use("/api/events", eventRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/rsvps", rsvpRoutes);
 app.use("/api/comments", commentRoutes);
+
+setupSwagger(app);
 
 app.get("/", (req, res) => {
   res.send("API is running.");
