@@ -1,12 +1,10 @@
 export const formatDate = (date) => {
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZone: "UTC",
-  };
-  return new Intl.DateTimeFormat("en-US", options).format(new Date(date));
+  const d = new Date(date);
+  const pad = (n) => n.toString().padStart(2, "0");
+  const day = pad(d.getUTCDate());
+  const month = pad(d.getUTCMonth() + 1);
+  const year = d.getUTCFullYear();
+  const hours = pad(d.getUTCHours());
+  const minutes = pad(d.getUTCMinutes());
+  return `${day}/${month}/${year}, ${hours}:${minutes}`;
 };

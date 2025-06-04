@@ -49,7 +49,7 @@ export const getAllEvents = async (req, res) => {
     const events = await EventModel.find()
       .select("title image date categoryId location")
       .populate("categoryId", "name")
-      .sort({ createdAt: -1 })
+      .sort({ date: 1 })
       .lean();
 
     const formattedEvents = events.map((event) => ({

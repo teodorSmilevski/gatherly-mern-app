@@ -7,6 +7,11 @@ const DefaultLayout = () => {
   const { isCreator, isAuth: isAuthenticated, logout, user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const handleLogout = () => {
+    logout();
+    setMenuOpen(false);
+  };
+
   const username = user?.username || "";
 
   return (
@@ -33,7 +38,7 @@ const DefaultLayout = () => {
                     Create Event
                   </Link>
                 )}
-                <Link to="/" onClick={logout}>
+                <Link to="/" onClick={handleLogout}>
                   Logout
                 </Link>
               </>
