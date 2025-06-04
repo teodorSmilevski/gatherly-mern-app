@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useCallback } from "react";
 import { useState } from "react";
+import axiosInstance from "../../utils/api";
 
 export const usePost = () => {
   const [loading, setLoading] = useState(false);
@@ -10,7 +10,7 @@ export const usePost = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.post(url, payload, {
+      const res = await axiosInstance.post(url, payload, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return res.data;

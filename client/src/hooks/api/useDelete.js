@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState, useCallback } from "react";
+import axiosInstance from "../../utils/api";
 
 export const useDelete = () => {
   const [loading, setLoading] = useState(false);
@@ -9,7 +9,7 @@ export const useDelete = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.delete(url, {
+      const res = await axiosInstance.delete(url, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return res.data;

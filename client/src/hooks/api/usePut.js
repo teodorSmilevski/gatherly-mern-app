@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useState, useCallback } from "react";
+import axiosInstance from "../../utils/api";
 
 export const usePut = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +8,7 @@ export const usePut = () => {
   const putData = useCallback(async (url, payload) => {
     setLoading(true);
     try {
-      const res = await axios.put(url, payload);
+      const res = await axiosInstance.put(url, payload);
       return res.data;
     } catch (err) {
       setError(err);
