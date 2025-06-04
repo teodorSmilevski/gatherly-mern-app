@@ -38,7 +38,7 @@ const router = express.Router();
  *             schema:
  *               $ref: '#/components/schemas/Event'
  *       403:
- *         description: Unauthorized: user is not a creator
+ *         description: "Unauthorized: user is not a creator"
  *       500:
  *         description: Server error
  */
