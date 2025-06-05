@@ -2,7 +2,19 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import swaggerDef from "./swaggerDef.js";
 import { User } from "./schemas/user.swagger.js";
-import { Event } from "./schemas/event.swagger.js";
+import { Event, EventCreate } from "./schemas/event.swagger.js";
+import {
+  Category,
+  CategoryCreate,
+  CategoryUpdate,
+} from "./schemas/category.swagger.js";
+import { Comment, CommentCreate } from "./schemas/comment.swagger.js";
+import { RSVP, RSVPCreate } from "./schemas/rsvp.swagger.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const options = {
   definition: {
@@ -12,10 +24,21 @@ const options = {
       schemas: {
         User,
         Event,
+        EventCreate,
+        Category,
+        CategoryCreate,
+        CategoryUpdate,
+        Comment,
+        CommentCreate,
+        RSVP,
+        RSVPCreate,
       },
     },
   },
-  apis: ["./routes/*.js"],
+  apis: [
+    path.join(__dirname, "../routes/*.js"),
+    path.join(__dirname, "../routes/**/*.js"),
+  ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

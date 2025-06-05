@@ -175,9 +175,6 @@ export const EventCreate = {
     location: {
       type: "string",
     },
-    image: {
-      type: "string",
-    },
     categoryId: {
       type: "string",
     },

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 import LoadingScreen from "./components/ui/LoadingScreen/LoadingScreen.jsx";
-import PrivateRoute from "./components/PrivateRoute.jsx";
+import PrivateRoute from "./components/layout/PrivateRoute.jsx";
 
 const Home = lazy(() => import("./pages/Home.jsx"));
 const EventDetails = lazy(() => import("./pages/event-details.jsx"));

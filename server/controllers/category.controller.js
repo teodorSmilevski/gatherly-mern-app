@@ -30,7 +30,7 @@ export const getAllCategories = async (req, res) => {
 
 export const getCategoryById = async (req, res) => {
   try {
-    const categoryId = req.body.categoryId;
+    const categoryId = req.params.categoryId;
 
     const category = await CategoryModel.findById(categoryId).lean();
     if (!category) {
