@@ -7,7 +7,6 @@ import PrivateRoute from "./components/layout/PrivateRoute.jsx";
 const Home = lazy(() => import("./pages/Home.jsx"));
 const EventDetails = lazy(() => import("./pages/event-details.jsx"));
 const CreateEvent = lazy(() => import("./pages/create-event.jsx"));
-const EditEvent = lazy(() => import("./pages/edit-event.jsx"));
 const Login = lazy(() => import("./pages/login.jsx"));
 const Register = lazy(() => import("./pages/register.jsx"));
 const UserDashboard = lazy(() => import("./pages/dashboard.jsx"));
@@ -61,14 +60,6 @@ const AppRouter = () => {
               element={
                 <PrivateRoute roles={["creator"]}>
                   <CreateEvent />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/events/:eid/edit"
-              element={
-                <PrivateRoute roles={["creator", "admin"]}>
-                  <EditEvent />
                 </PrivateRoute>
               }
             />
