@@ -1,19 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import LoadingScreen from "./components/ui/LoadingScreen/LoadingScreen.jsx";
-import PrivateRoute from "./components/layout/PrivateRoute.jsx";
+import LoadingScreen from "./components/ui/LoadingScreen/LoadingScreen";
+import PrivateRoute from "./components/layout/PrivateRoute";
 
-const Home = lazy(() => import("./pages/Home.jsx"));
-const EventDetails = lazy(() => import("./pages/event-details.jsx"));
-const CreateEvent = lazy(() => import("./pages/create-event.jsx"));
-const Login = lazy(() => import("./pages/login.jsx"));
-const Register = lazy(() => import("./pages/register.jsx"));
-const UserDashboard = lazy(() => import("./pages/dashboard.jsx"));
-const NotFound = lazy(() => import("./pages/not-found.jsx"));
-const DefaultLayout = lazy(() =>
-  import("./components/layout/DefaultLayout.jsx")
-);
+const Home = lazy(() => import("./pages/Home"));
+const EventDetails = lazy(() => import("./pages/event-details"));
+const CreateEvent = lazy(() => import("./pages/create-event"));
+const Login = lazy(() => import("./pages/login"));
+const Register = lazy(() => import("./pages/register"));
+const UserDashboard = lazy(() => import("./pages/dashboard"));
+const NotFound = lazy(() => import("./pages/not-found"));
+const DefaultLayout = lazy(() => import("./components/layout/DefaultLayout"));
 
 const AppRouter = () => {
   return (
